@@ -12,7 +12,8 @@ def init():
     loaded_model = joblib.load(model_path)
 
 def run(raw_data):
-    data = pd.read_csv(raw_data)
+    data = json.loads(raw_data)['data'][0]
+    data = pd.DataFrame(data)
 
     result = loaded_model.predict(data).tolist()
 
